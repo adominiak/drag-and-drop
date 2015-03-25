@@ -1,0 +1,40 @@
+
+
+
+#square1 {
+  background-color: orange;
+}
+#square2 {
+  background-color: #6666bb;
+}
+#square3 {
+  background-color: #66bb66;
+}
+#square4 {
+  background-color: #cceecc;
+}
+
+.container {
+  width: 300px;
+  height: 300px;
+}
+
+.dragable {
+  display: inline-block;
+  padding: 4px;
+}
+.square {
+  border: 2px solid transparent;
+  border-radius: 10px;
+  height: 100px;
+  padding: 10px;
+  width: 100px;
+}
+
+.is-dragged {
+  opacity: 0.4;
+}
+
+.dragable.over .square {
+  border: 2px dashed #000;
+}
