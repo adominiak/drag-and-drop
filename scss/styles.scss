@@ -1,6 +1,3 @@
-
-
-
 #square1 {
   background-color: orange;
 }
@@ -22,6 +19,7 @@
 .dragable {
   display: inline-block;
   padding: 4px;
+  float: left;
 }
 .square {
   border: 2px solid transparent;
@@ -35,6 +33,6 @@
   opacity: 0.4;
 }
 
-.dragable.over .square {
+.dragable.over {
   border: 2px dashed #000;
 }
