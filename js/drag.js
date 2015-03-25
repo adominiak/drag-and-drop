@@ -34,19 +34,41 @@
       }
       if (dragSrcEl != this) {
         dragSrcEl.innerHTML = this.innerHTML;
-        this.innerHTML = e.dataTransfer.getData('text/html');
+        var div = document.createElement("DIV");
+        div.classList.add('dragable');
+        div.draggable = true;
+        attachEvents(div);
+        div.innerHTML = e.dataTransfer.getData('text/html');
+        if (this.compareDocumentPosition(dragSrcEl) === 4){
+          this.parentElement.insertBefore(div,this);
+        }
+        else {
+          if (this === this.parentElement.lastChildElement) {
+            console.log('last');
+            this.parentElement.appendChild(div);
+          }
+          else {
+            this.parentElement.insertBefore(div, this.nextElementSibling);
+          }
+        }
+        this.parentElement.removeChild(dragSrcEl);
       }
+      this.classList.remove('over');
       return false;
+    }
+
+    function attachEvents(element){
+      element.addEventListener('dragstart', handleDragStart, false);;
+      element.addEventListener('dragenter', handleDragEnter, false);
+      element.addEventListener('dragover', handleDragOver, false);
+      element.addEventListener('dragleave', handleDragLeave, false);
+      element.addEventListener('dragend', handleDragEnd, false);
+      element.addEventListener('drop', handleDrop, false);
     }
 
     var cols = document.querySelectorAll('.dragable');
     [].forEach.call(cols, function(col) {
-      col.addEventListener('dragstart', handleDragStart, false);;
-      col.addEventListener('dragenter', handleDragEnter, false);
-      col.addEventListener('dragover', handleDragOver, false);
-      col.addEventListener('dragleave', handleDragLeave, false);
-      col.addEventListener('dragend', handleDragEnd, false);
-      col.addEventListener('drop', handleDrop, false);
+      attachEvents(col);
     });
   }
   window.onload = function(){
