@@ -36,3 +36,9 @@
 .dragable.over {
   border: 2px dashed #000;
 }
+
+a{
+  * {
+    pointer-events: none;
+  }
+}
